@@ -1,0 +1,58 @@
+global:
+  user: "root"
+  ssh_port: 22
+  deploy_dir: "/opt/tidb-deploy"
+  data_dir: "/opt/tidb-data"
+
+server_configs:
+  pd:
+    replication.location-labels: ["host", "disk"]
+
+pd_servers:
+  - host: 192.168.7.211
+  - host: 192.168.7.212
+  - host: 192.168.7.213
+
+tikv_servers:
+  - host: 192.168.7.211
+    port: 20160
+    status_port: 20180
+    data_dir: "/data/hdd1/tikv-data"
+    config:
+      server.labels: { host: "tikv1", disk: "hdd" }
+  - host: 192.168.7.211
+    port: 20161
+    status_port: 20181
+    data_dir: "/data/hdd2/tikv-data"
+    config:
+      server.labels: { host: "tikv1", disk: "hdd" }
+  - host: 192.168.7.211
+    port: 20162
+    status_port: 20182
+    data_dir: "/data/hdd3/tikv-data"
+    config:
+      server.labels: { host: "tikv1", disk: "hdd" }
+  - host: 192.168.7.212
+    port: 20160
+    status_port: 20180
+    data_dir: "/data/hdd1/tikv-data"
+    config:
+      server.labels: { host: "tikv2", disk: "hdd" }
+  - host: 192.168.7.212
+    port: 20161
+    status_port: 20181
+    data_dir: "/data/hdd2/tikv-data"
+    config:
+      server.labels: { host: "tikv2", disk: "hdd" }
+  - host: 192.168.7.213
+    port: 20160
+    status_port: 20180
+    data_dir: "/data/hdd1/tikv-data"
+    config:
+      server.labels: { host: "tikv3", disk: "hdd" }
+  - host: 192.168.7.213
+    port: 20161
+    status_port: 20181
+    data_dir: "/data/hdd2/tikv-data"
+    config:
+      server.labels: { host: "tikv3", disk: "hdd" }
