@@ -66,9 +66,19 @@ DEBIAN_FRONTEND=noninteractive apt-get install -y -qq chrony
 systemctl enable chrony
 systemctl restart chrony
 
+# 6.irqbalanceのインストール
+sudo apt-get install -y selinux-utils irqbalance
+sudo systemctl enable --now irqbalance
+
 echo "========================================="
 echo "すべての初期化処理が正常に完了しました。"
 echo "========================================="
+
+# 7.mDNSの設定
+sudo apt-get install -y avahi-daemon
+sudo systemctl enable avahi-daemon
+sudo systemctl start avahi-daemon
+sudo systemctl status avahi-daemon
 
 # 最終確認としていくつかのステータスを表示
 echo "[確認] CPUガバナー:"
